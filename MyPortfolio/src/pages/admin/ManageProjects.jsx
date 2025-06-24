@@ -6,7 +6,7 @@ const ManageProjects = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/projects")
+      .get(`${process.env.REACT_APP_API_URL}/api/projects`)
       .then((res) => setProjects(res.data))
       .catch((err) => console.error("Error fetching projects:", err));
   }, []);
@@ -25,7 +25,9 @@ const ManageProjects = () => {
 
   return (
     <div>
-      <h1 className="mt-20 text-3xl font-bold mb-6 text-red-600">Manage Projects</h1>
+      <h1 className="mt-20 text-3xl font-bold mb-6 text-red-600">
+        Manage Projects
+      </h1>
 
       <div className="overflow-x-auto bg-white rounded-lg shadow">
         <table className="min-w-full text-sm text-left border border-gray-200">
