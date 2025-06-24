@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+
 const ManageProjects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const api = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
   useEffect(() => {
     const fetchProjects = async () => {
