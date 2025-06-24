@@ -16,7 +16,7 @@ const ManageProjects = () => {
       return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/projects/${id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/projects/${id}`);
       setProjects(projects.filter((p) => p._id !== id));
     } catch (err) {
       console.error("Error deleting project:", err);
