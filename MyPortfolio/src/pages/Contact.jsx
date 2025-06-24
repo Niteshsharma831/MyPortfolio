@@ -79,22 +79,22 @@ const Contact = () => {
   };
 
   return (
-    <section className="bg-gradient-to-r from-slate-900 via-gray-900 to-black text-white py-24 px-6">
+    <section className="bg-gradient-to-r from-slate-900 via-gray-900 to-black text-white py-24 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-5xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-red-500 animate-pulse">
+        <h2 className="text-4xl sm:text-5xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-red-500 animate-pulse">
           Let's Connect
         </h2>
 
-        <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
           Have a project in mind, a freelance opportunity, or just want to say
           hello? Drop me a message and I’ll get back to you as soon as possible.
         </p>
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg p-10 text-white space-y-6"
+          className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg p-6 sm:p-10 text-white space-y-6"
         >
-          <div className="flex flex-col sm:flex-row gap-6">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
             <input
               type="text"
               name="name"
@@ -115,19 +115,19 @@ const Contact = () => {
             />
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <input
               type="text"
               placeholder="Enter OTP"
               value={userOtp}
               onChange={(e) => setUserOtp(e.target.value)}
-              className="w-200 px-5 py-4 rounded-md bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-5 py-4 rounded-md bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
               disabled={!otpSent}
             />
             <button
               type="button"
               onClick={handleSendOtp}
-              className="bg-blue-500 px-5 py-4 rounded-md text-white hover:opacity-80 transition"
+              className="w-full sm:w-auto bg-blue-500 px-5 py-4 rounded-md text-white hover:opacity-80 transition"
               disabled={loading}
             >
               {loading ? "Sending..." : "Send OTP"}
@@ -147,7 +147,7 @@ const Contact = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`flex justify-center items-center gap-2 bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold px-8 py-4 rounded-md shadow-lg transform transition duration-300 ${
+            className={`w-full flex justify-center items-center gap-2 bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold px-8 py-4 rounded-md shadow-lg transform transition duration-300 ${
               loading ? "opacity-60 cursor-not-allowed" : "hover:scale-105"
             }`}
           >
@@ -181,10 +181,10 @@ const Contact = () => {
         </form>
 
         <div className="mt-16 text-center">
-          <h3 className="text-2xl font-semibold mb-4 text-yellow-300">
+          <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-yellow-300">
             Find Me On
           </h3>
-          <div className="flex justify-center gap-8 text-3xl">
+          <div className="flex justify-center gap-6 sm:gap-8 text-2xl sm:text-3xl">
             <a
               href="mailto:Niteshkumarsharma831@gmail.com"
               className="hover:text-pink-400 transition duration-300"
