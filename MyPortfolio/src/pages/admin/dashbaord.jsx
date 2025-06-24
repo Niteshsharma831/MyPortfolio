@@ -9,7 +9,9 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchCount = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/projects/count");
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/projects/count`
+        );
         setProjectCount(res.data.total);
       } catch (err) {
         console.error("Failed to fetch project count", err);
