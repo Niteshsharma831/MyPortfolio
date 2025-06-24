@@ -10,7 +10,7 @@ const Dashboard = () => {
     const fetchCount = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/projects/count`
+          "https://myportfolio-zcq1.onrender.com/api/projects/count"
         );
         setProjectCount(res.data.total);
       } catch (err) {
