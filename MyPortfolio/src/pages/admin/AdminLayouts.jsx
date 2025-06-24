@@ -22,25 +22,24 @@ const AdminLayout = () => {
     },
   ];
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const closeSidebar = () => setSidebarOpen(false);
 
   return (
     <div className="flex min-h-screen relative">
-      {/* Mobile Toggle Button */}
+      {/* 🔘 Mobile Toggle Button */}
       <button
         onClick={toggleSidebar}
-        className="sm:hidden absolute top-4 left-4 z-50 text-white bg-red-500 p-2 rounded-md shadow-md"
+        className="sm:hidden fixed top-4 left-4 z-50 bg-red-500 text-white p-2 rounded-md shadow-md"
       >
         {sidebarOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
       </button>
 
-      {/* Sidebar */}
+      {/* 📦 Sidebar */}
       <aside
-        className={`bg-slate-800 text-white p-6 shadow-xl z-40 fixed top-0 left-0 h-screen w-64 transform transition-transform duration-300 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } sm:translate-x-0 sm:static sm:block`}
+        className={`bg-slate-800 text-white p-6 shadow-xl z-40 fixed top-0 left-0 h-screen w-64 transform transition-transform duration-300
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+          sm:translate-x-0 sm:static sm:block`}
       >
         <div className="text-center mb-10">
           <h2 className="text-2xl font-extrabold text-red-400 tracking-wide">
@@ -53,7 +52,7 @@ const AdminLayout = () => {
             <Link
               key={link.to}
               to={link.to}
-              onClick={() => setSidebarOpen(false)} // auto-close on mobile
+              onClick={closeSidebar} // auto-close sidebar on mobile
               className={`flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium transition-all ${
                 pathname === link.to
                   ? "bg-red-500 text-white"
@@ -67,7 +66,7 @@ const AdminLayout = () => {
         </nav>
       </aside>
 
-      {/* Main Content */}
+      {/* 🧱 Main Content */}
       <main className="flex-1 sm:ml-64 w-full p-6 sm:p-10 bg-gray-100 min-h-screen">
         <Outlet />
       </main>
