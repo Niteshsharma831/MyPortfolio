@@ -26,7 +26,7 @@ const Dashboard = () => {
     const fetchMessages = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3000/api/contacts/messages"
+          "https://myportfolio-zcq1.onrender.com/api/contacts/messages"
         );
         setMessages(res.data.messages);
       } catch (err) {
@@ -45,7 +45,7 @@ const Dashboard = () => {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:3000/api/contacts/messages/${id}`
+        `https://myportfolio-zcq1.onrender.com/contacts/messages/${id}`
       );
       if (res.data.success) {
         setMessages((prev) => prev.filter((msg) => msg._id !== id));
