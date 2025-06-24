@@ -13,16 +13,14 @@ connectDB();
 
 app.use(
   cors({
-    origin: "*", // or better: origin: 'https://your-frontend-url.com'
+    origin: "*", 
   })
 );
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-// Routes
 app.use("/api/projects", projectRoutes);
 app.use("/api/contacts", contactRoutes);
-// app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.get("/", (req, res) => {

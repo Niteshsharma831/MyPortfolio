@@ -35,11 +35,11 @@ const generateWelcomeEmail = (clientName) => `
 
         <p style="text-align: center; font-size: 16px;">
           <span>🔗 Follow me on</span><br/>
-          <a href="https://www.linkedin.com/in/niteshkumarsharma831" target="_blank" style="margin: 0 8px; color: #0e76a8; text-decoration: none;">LinkedIn</a> |
+          <a href="https://www.linkedin.com/in/nitesh-kumar-sharma-2894a1185/" target="_blank" style="margin: 0 8px; color: #0e76a8; text-decoration: none;">LinkedIn</a> |
           <a href="https://github.com/Niteshsharma831" target="_blank" style="margin: 0 8px; color: #333; text-decoration: none;">GitHub</a> |
           <a href="https://www.fiverr.com/niteshsharma_01" target="_blank" style="margin: 0 8px; color: #1dbf73; text-decoration: none;">Fiverr</a> |
-          <a href="https://www.facebook.com/CodeAndCreate831" target="_blank" style="margin: 0 8px; color: #3b5998; text-decoration: none;">Facebook</a> |
-          <a href="https://www.instagram.com/" target="_blank" style="margin: 0 8px; color: #e1306c; text-decoration: none;">Instagram</a>
+          <a href="https://www.facebook.com/niteshsharma.sharma.796" target="_blank" style="margin: 0 8px; color: #3b5998; text-decoration: none;">Facebook</a> |
+          <a href="https://www.instagram.com/niteshsharma_99/" target="_blank" style="margin: 0 8px; color: #e1306c; text-decoration: none;">Instagram</a>
         </p>
 
         <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;" />
