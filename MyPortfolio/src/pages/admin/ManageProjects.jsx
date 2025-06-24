@@ -28,7 +28,7 @@ const ManageProjects = () => {
       return;
 
     try {
-      await axios.delete(`${api}/api/projects/${id}`);
+      await axios.delete(`https://myportfolio-zcq1.onrender.com/api/projects/${id}`);
       setProjects((prev) => prev.filter((p) => p._id !== id));
     } catch (err) {
       console.error("Error deleting project:", err);
