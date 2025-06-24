@@ -10,7 +10,7 @@ const ManageProjects = () => {
     const fetchProjects = async () => {
       try {
         const res = await axios.get(
-          `https://myportfolio-zcq1.onrender.com/api/projects`
+          "https://myportfolio-zcq1.onrender.com/api/projects"
         );
         setProjects(res.data);
       } catch (err) {
@@ -28,7 +28,9 @@ const ManageProjects = () => {
       return;
 
     try {
-      await axios.delete(`https://myportfolio-zcq1.onrender.com/api/projects/${id}`);
+      await axios.delete(
+        `https://myportfolio-zcq1.onrender.com/api/projects/${id}`
+      );
       setProjects((prev) => prev.filter((p) => p._id !== id));
     } catch (err) {
       console.error("Error deleting project:", err);
