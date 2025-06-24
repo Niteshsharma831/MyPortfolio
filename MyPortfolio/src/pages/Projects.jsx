@@ -3,19 +3,19 @@ import axios from "axios";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true); // 🔄 Loader state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/products`
+          `${process.env.REACT_APP_API_URL}/api/projects`
         );
         setProjects(res.data);
       } catch (err) {
         console.error("Error fetching projects", err);
       } finally {
-        setLoading(false); // ✅ Stop loading once data is fetched
+        setLoading(false);
       }
     };
 
