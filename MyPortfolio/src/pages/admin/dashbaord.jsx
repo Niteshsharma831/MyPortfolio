@@ -7,7 +7,6 @@ const Dashboard = () => {
   const [loadingProjects, setLoadingProjects] = useState(true);
   const [loadingMessages, setLoadingMessages] = useState(true);
 
-  // Fetch project count
   useEffect(() => {
     const fetchCount = async () => {
       try {
@@ -25,7 +24,6 @@ const Dashboard = () => {
     fetchCount();
   }, []);
 
-  // Fetch messages
   useEffect(() => {
     const fetchMessages = async () => {
       try {
@@ -65,10 +63,12 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-6 md:px-10">
+    <div className="min-h-screen bg-gray-100 px-4 sm:px-6 md:px-8 lg:px-10">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-800">👨‍💻 Admin Dashboard</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-800">
+          👨‍💻 Admin Dashboard
+        </h1>
         <button
           onClick={handleLogout}
           className="text-sm text-white bg-red-500 hover:bg-red-600 px-4 py-2 rounded-md transition"
@@ -77,13 +77,13 @@ const Dashboard = () => {
         </button>
       </div>
 
-      <h2 className="text-2xl font-semibold text-gray-700 mb-6">
+      <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-6">
         Welcome back, <span className="text-pink-500">Nitesh Kumar Sharma</span>{" "}
         👋
       </h2>
 
       {/* Dashboard Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-10">
         <div className="p-6 rounded-xl shadow-xl bg-gradient-to-br from-pink-500 to-red-500 text-white hover:scale-105 transform transition duration-300">
           <h2 className="text-lg font-medium mb-1">📂 Total Projects</h2>
           <p className="text-5xl font-bold">
