@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 import Navbar from "./components/navbar";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer.jsx";
 import PrivateRoute from "./components/PrivateRoute";
 
 // Public Pages
