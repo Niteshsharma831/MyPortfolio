@@ -16,10 +16,13 @@ const Login = () => {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:3000/api/admin/login", {
-        username: formData.username,
-        password: formData.password,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/admin/login`,
+        {
+          username: formData.username,
+          password: formData.password,
+        }
+      );
       localStorage.setItem("token", res.data.token);
       navigate("/admin/dashboard");
     } catch (err) {
