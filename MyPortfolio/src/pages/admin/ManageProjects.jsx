@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-
 const ManageProjects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +11,7 @@ const ManageProjects = () => {
         const res = await axios.get(
           "https://myportfolio-zcq1.onrender.com/api/projects"
         );
-        setProjects(res.data);
+        setProjects(res.data || []);
       } catch (err) {
         console.error("Error fetching projects:", err);
       } finally {
@@ -21,11 +20,13 @@ const ManageProjects = () => {
     };
 
     fetchProjects();
-  }, [api]);
+  }, []); // ✅ Removed incorrect dependency [api]
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this project?"))
-      return;
+    const confirm = window.confirm(
+      "Are you sure you want to delete this project?"
+    );
+    if (!confirm) return;
 
     try {
       await axios.delete(
@@ -34,6 +35,7 @@ const ManageProjects = () => {
       setProjects((prev) => prev.filter((p) => p._id !== id));
     } catch (err) {
       console.error("Error deleting project:", err);
+      alert("Failed to delete the project. Try again.");
     }
   };
 
