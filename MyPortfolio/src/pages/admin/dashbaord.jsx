@@ -4,33 +4,39 @@ import axios from "axios";
 const Dashboard = () => {
   const [projectCount, setProjectCount] = useState(0);
   const [messages, setMessages] = useState([]);
+  const [loadingProjects, setLoadingProjects] = useState(true);
+  const [loadingMessages, setLoadingMessages] = useState(true);
 
-  // Fetch projects count
+  // Fetch project count
   useEffect(() => {
     const fetchCount = async () => {
       try {
         const res = await axios.get(
           "https://myportfolio-zcq1.onrender.com/api/projects/count"
         );
-        setProjectCount(res.data.total);
+        setProjectCount(res.data.total || 0);
       } catch (err) {
-        console.error("Failed to fetch project count", err);
+        console.error("Failed to fetch project count:", err);
+      } finally {
+        setLoadingProjects(false);
       }
     };
 
     fetchCount();
   }, []);
 
-  // Fetch all contact messages
+  // Fetch messages
   useEffect(() => {
     const fetchMessages = async () => {
       try {
         const res = await axios.get(
           "https://myportfolio-zcq1.onrender.com/api/contacts/messages"
         );
-        setMessages(res.data.messages);
+        setMessages(res.data.messages || []);
       } catch (err) {
-        console.error("Failed to fetch messages", err);
+        console.error("Failed to fetch messages:", err);
+      } finally {
+        setLoadingMessages(false);
       }
     };
 
@@ -45,21 +51,22 @@ const Dashboard = () => {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `https://myportfolio-zcq1.onrender.com/contacts/messages/${id}`
+        `https://myportfolio-zcq1.onrender.com/api/contacts/messages/${id}`
       );
       if (res.data.success) {
         setMessages((prev) => prev.filter((msg) => msg._id !== id));
       } else {
-        alert("Failed to delete message.");
+        alert("Failed to delete the message.");
       }
     } catch (err) {
-      console.error("Failed to delete message:", err);
-      alert("Error deleting message.");
+      console.error("Error deleting message:", err);
+      alert("Something went wrong while deleting.");
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-100 py-12 px-6 md:px-10">
+      {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-4xl font-bold text-gray-800">👨‍💻 Admin Dashboard</h1>
         <button
@@ -79,7 +86,9 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
         <div className="p-6 rounded-xl shadow-xl bg-gradient-to-br from-pink-500 to-red-500 text-white hover:scale-105 transform transition duration-300">
           <h2 className="text-lg font-medium mb-1">📂 Total Projects</h2>
-          <p className="text-5xl font-bold">{projectCount}</p>
+          <p className="text-5xl font-bold">
+            {loadingProjects ? "..." : projectCount}
+          </p>
         </div>
         <div className="p-6 rounded-xl shadow-xl bg-gradient-to-br from-green-400 to-emerald-500 text-white hover:scale-105 transform transition duration-300">
           <h2 className="text-lg font-medium mb-1">🛠️ Add New Project</h2>
@@ -91,12 +100,14 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Messages */}
+      {/* Contact Messages */}
       <h2 className="text-xl font-bold mb-4 text-gray-700">
         📨 Contact Messages
       </h2>
       <div className="bg-white rounded-lg shadow-md p-6 max-h-[400px] overflow-y-auto space-y-4">
-        {messages.length === 0 ? (
+        {loadingMessages ? (
+          <p className="text-gray-500">Loading messages...</p>
+        ) : messages.length === 0 ? (
           <p className="text-gray-500">No messages found.</p>
         ) : (
           messages.map((msg) => (
