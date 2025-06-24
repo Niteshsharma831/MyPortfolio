@@ -65,7 +65,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-6 md:px-10">
+    <div className="min-h-screen bg-gray-100 px-6 md:px-10">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-4xl font-bold text-gray-800">👨‍💻 Admin Dashboard</h1>
