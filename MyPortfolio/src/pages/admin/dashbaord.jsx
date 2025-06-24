@@ -63,7 +63,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 sm:px-6 md:px-8 lg:px-10">
+    <div className="min-h-screen bg-gray-100 px-4 sm:px-6 md:px-6 lg:px-6">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-800">
