@@ -67,7 +67,8 @@ const AdminLayout = () => {
       </aside>
 
       {/* 🧱 Main Content */}
-      <main className="flex-1 sm:ml-64 w-full p-6 sm:p-10 bg-gray-100 min-h-screen">
+      {/* Removed sm:ml-64 from here */}
+      <main className="flex-1 w-full p-6 sm:p-10 bg-gray-100 min-h-screen">
         <Outlet />
       </main>
     </div>
