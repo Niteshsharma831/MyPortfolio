@@ -9,8 +9,9 @@ const Projects = () => {
     const fetchProjects = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/projects`
+          "https://myportfolio-zcq1.onrender.com/api/projects"
         );
+
         setProjects(res.data);
       } catch (err) {
         console.error("Error fetching projects", err);
