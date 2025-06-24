@@ -17,7 +17,6 @@ const Admin = () => {
       const reader = new FileReader();
       reader.onload = () => {
         const base64 = reader.result;
-        console.log("📷 Base64 image:", base64.slice(0, 100)); // Preview base64
         setFormData((prev) => ({ ...prev, image: base64 }));
       };
       reader.readAsDataURL(files[0]);
@@ -48,11 +47,7 @@ const Admin = () => {
         "https://myportfolio-zcq1.onrender.com/api/projects/create",
         payload
       );
-      console.log("✅ Success response:", res.data);
-
       alert("✅ Project created successfully!");
-
-      // Reset
       setFormData({
         title: "",
         description: "",
@@ -68,17 +63,16 @@ const Admin = () => {
   };
 
   return (
-    <section className="bg-gradient-to-br from-gray-900 to-black text-white py-10 px-6 mt-10 min-h-screen">
-      <div className="max-w-3xl mx-auto">
-        <h2 className="text-4xl font-bold mb-10 text-center text-pink-500">
+    <section className="bg-gradient-to-br from-gray-900 to-black text-white py-10 px-4 sm:px-6 mt-10 min-h-screen">
+      <div className="max-w-3xl mx-auto w-full">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-center text-pink-500">
           Add New Project
         </h2>
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white/10 backdrop-blur-lg p-8 rounded-xl shadow-md space-y-6"
+          className="bg-white/10 backdrop-blur-lg p-6 sm:p-8 rounded-xl shadow-md space-y-6"
         >
-          {/* Title */}
           <input
             type="text"
             name="title"
@@ -86,10 +80,9 @@ const Admin = () => {
             value={formData.title}
             onChange={handleChange}
             required
-            className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white"
+            className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white focus:outline-none"
           />
 
-          {/* Description */}
           <textarea
             name="description"
             rows="4"
@@ -97,10 +90,9 @@ const Admin = () => {
             value={formData.description}
             onChange={handleChange}
             required
-            className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white"
+            className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white focus:outline-none"
           ></textarea>
 
-          {/* Tech Stack */}
           <input
             type="text"
             name="techStack"
@@ -108,10 +100,9 @@ const Admin = () => {
             value={formData.techStack}
             onChange={handleChange}
             required
-            className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white"
+            className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white focus:outline-none"
           />
 
-          {/* GitHub & Live Links */}
           <div className="flex flex-col sm:flex-row gap-4">
             <input
               type="url"
@@ -119,7 +110,7 @@ const Admin = () => {
               placeholder="GitHub Link"
               value={formData.github}
               onChange={handleChange}
-              className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white"
+              className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white focus:outline-none"
             />
             <input
               type="url"
@@ -127,13 +118,12 @@ const Admin = () => {
               placeholder="Live Site Link"
               value={formData.live}
               onChange={handleChange}
-              className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white"
+              className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white focus:outline-none"
             />
           </div>
 
-          {/* Image Upload */}
           <div>
-            <label htmlFor="image" className="block mb-2 text-sm text-gray-300">
+            <label className="block mb-2 text-sm text-gray-300" htmlFor="image">
               Project Image
             </label>
             <input
@@ -145,16 +135,16 @@ const Admin = () => {
             />
           </div>
 
-          {/* Image Preview */}
           {formData.image && (
-            <img
-              src={formData.image}
-              alt="Preview"
-              className="w-64 h-40 object-cover rounded-md shadow mt-4"
-            />
+            <div className="mt-4">
+              <img
+                src={formData.image}
+                alt="Preview"
+                className="w-full max-w-xs sm:max-w-md h-40 object-cover rounded-md shadow"
+              />
+            </div>
           )}
 
-          {/* Submit */}
           <button
             type="submit"
             className="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white font-semibold px-6 py-3 rounded-md hover:scale-105 transition duration-300"
