@@ -4,12 +4,14 @@ import axios from "axios";
 const ManageProjects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const api = process.env.REACT_APP_API_URL || "http://localhost:3000";
+  // const api = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await axios.get(`${api}/api/projects`);
+        const res = await axios.get(
+          `https://myportfolio-zcq1.onrender.com/api/projects`
+        );
         setProjects(res.data);
       } catch (err) {
         console.error("Error fetching projects:", err);
