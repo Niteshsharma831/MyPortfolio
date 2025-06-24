@@ -63,7 +63,9 @@ const Admin = () => {
   };
 
   return (
-    <section className="bg-gradient-to-br from-gray-900 to-black text-white py-10 px-4 sm:px-6 mt-10 min-h-screen">
+    // Removed mt-10 and adjusted padding for better integration with AdminLayout's main area
+    // The bg-gradient-to-br from-gray-900 to-black will apply to the content area
+    <section className="bg-gradient-to-br from-gray-900 to-black text-white py-10 px-4 sm:px-6 flex flex-col items-center justify-center min-h-[calc(100vh-2rem)] sm:min-h-full">
       <div className="max-w-3xl mx-auto w-full">
         <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-center text-pink-500">
           Add New Project

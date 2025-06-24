@@ -20,7 +20,7 @@ const ManageProjects = () => {
     };
 
     fetchProjects();
-  }, []); // ✅ Removed incorrect dependency [api]
+  }, []);
 
   const handleDelete = async (id) => {
     const confirm = window.confirm(
@@ -33,6 +33,7 @@ const ManageProjects = () => {
         `https://myportfolio-zcq1.onrender.com/api/projects/${id}`
       );
       setProjects((prev) => prev.filter((p) => p._id !== id));
+      alert("Project deleted successfully!"); // Added success alert
     } catch (err) {
       console.error("Error deleting project:", err);
       alert("Failed to delete the project. Try again.");
@@ -40,15 +41,22 @@ const ManageProjects = () => {
   };
 
   return (
-    <div className="p-6 mt-16">
+    // Removed mt-16 as AdminLayout already provides top padding.
+    // The p-6 gives internal padding to this component.
+    <div className="p-6">
       <h1 className="text-3xl font-bold mb-6 text-red-600">Manage Projects</h1>
 
       {loading ? (
         <p className="text-gray-500 animate-pulse">Loading projects...</p>
       ) : (
-        <div className="overflow-x-auto bg-white rounded-lg shadow">
+        // Added max-h-[calc(100vh-150px)] and overflow-y-auto for vertical scrolling
+        // The value 150px is an estimate, you might need to adjust it based on your actual header/padding heights.
+        // It accounts for the AdminLayout's main padding, this component's p-6, and the h1 height.
+        <div className="overflow-x-auto overflow-y-auto bg-white rounded-lg shadow max-h-[calc(100vh-160px)] sm:max-h-[calc(100vh-180px)]">
           <table className="min-w-full text-sm text-left border border-gray-200">
-            <thead className="bg-slate-800 text-white">
+            <thead className="bg-slate-800 text-white sticky top-0 z-10">
+              {" "}
+              {/* Added sticky top-0 and z-10 */}
               <tr>
                 <th className="p-4">Image</th>
                 <th className="p-4">Title</th>
