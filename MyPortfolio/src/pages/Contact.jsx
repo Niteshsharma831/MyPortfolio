@@ -28,7 +28,7 @@ const Contact = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:3000/api/contacts/send-otp",
+        "https://myportfolio-zcq1.onrender.com/api/contacts/send-otp",
         {
           name: formData.name,
           email: formData.email,
@@ -63,7 +63,7 @@ const Contact = () => {
     setLoading(true);
     try {
       await axios.post(
-        "http://localhost:3000/api/contacts/contactme",
+        "https://myportfolio-zcq1.onrender.com/api/contacts/contactme",
         formData
       );
       toast.success("✅ Message sent successfully!");
