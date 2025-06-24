@@ -5,7 +5,7 @@ import flutterCertiicate from "../assets/DataFlair.jpeg";
 import flipkartCertiicate from "../assets/flipkart.jpeg";
 import HackathoneCertiicate from "../assets/Hackathone.jpg";
 import TataCertificate from "../assets/Tata.jpeg";
-import fiverrLogo from "../assets/fiverr.png";
+import fiverrLogo from "../assets/Fiverr.png";
 import UpWorkLogo from "../assets/upwork.png";
 import FreelancerLogo from "../assets/freelancer.png";
 import WelfoundLogo from "../assets/wellfound.png";
