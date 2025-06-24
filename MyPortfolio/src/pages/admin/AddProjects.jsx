@@ -13,16 +13,16 @@ const Admin = () => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === "image") {
+    if (name === "image" && files.length > 0) {
       const reader = new FileReader();
       reader.onload = () => {
-        setFormData({ ...formData, image: reader.result });
+        const base64 = reader.result;
+        console.log("📷 Base64 image:", base64.slice(0, 100)); // Preview base64
+        setFormData((prev) => ({ ...prev, image: base64 }));
       };
-      if (files && files[0]) {
-        reader.readAsDataURL(files[0]);
-      }
+      reader.readAsDataURL(files[0]);
     } else {
-      setFormData({ ...formData, [name]: value });
+      setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
 
@@ -31,10 +31,10 @@ const Admin = () => {
 
     const techArray = formData.techStack
       .split(",")
-      .map((tech) => tech.trim())
-      .filter((tech) => tech.length > 0);
+      .map((t) => t.trim())
+      .filter(Boolean);
 
-    const dataToSend = {
+    const payload = {
       title: formData.title,
       description: formData.description,
       techStack: techArray,
@@ -46,12 +46,13 @@ const Admin = () => {
     try {
       const res = await axios.post(
         "https://myportfolio-zcq1.onrender.com/api/projects/create",
-        dataToSend
+        payload
       );
-      alert("✅ Project created successfully!");
-      console.log("Response:", res.data);
+      console.log("✅ Success response:", res.data);
 
-      // Reset the form
+      alert("✅ Project created successfully!");
+
+      // Reset
       setFormData({
         title: "",
         description: "",
@@ -60,9 +61,9 @@ const Admin = () => {
         live: "",
         image: "",
       });
-    } catch (error) {
-      console.error("❌ Error creating project:", error.response || error);
-      alert("❌ Failed to create project. Check console for details.");
+    } catch (err) {
+      console.error("❌ Error creating project:", err.response || err);
+      alert("❌ Failed to create project. See console for details.");
     }
   };
 
@@ -77,42 +78,40 @@ const Admin = () => {
           onSubmit={handleSubmit}
           className="bg-white/10 backdrop-blur-lg p-8 rounded-xl shadow-md space-y-6"
         >
-          <div>
-            <input
-              type="text"
-              name="title"
-              placeholder="Project Title *"
-              value={formData.title}
-              onChange={handleChange}
-              required
-              className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white focus:outline-none"
-            />
-          </div>
+          {/* Title */}
+          <input
+            type="text"
+            name="title"
+            placeholder="Project Title *"
+            value={formData.title}
+            onChange={handleChange}
+            required
+            className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white"
+          />
 
-          <div>
-            <textarea
-              name="description"
-              rows="4"
-              placeholder="Short Description *"
-              value={formData.description}
-              onChange={handleChange}
-              required
-              className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white focus:outline-none"
-            ></textarea>
-          </div>
+          {/* Description */}
+          <textarea
+            name="description"
+            rows="4"
+            placeholder="Short Description *"
+            value={formData.description}
+            onChange={handleChange}
+            required
+            className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white"
+          ></textarea>
 
-          <div>
-            <input
-              type="text"
-              name="techStack"
-              placeholder="Tech Stack (comma separated) *"
-              value={formData.techStack}
-              onChange={handleChange}
-              required
-              className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white focus:outline-none"
-            />
-          </div>
+          {/* Tech Stack */}
+          <input
+            type="text"
+            name="techStack"
+            placeholder="Tech Stack (comma separated) *"
+            value={formData.techStack}
+            onChange={handleChange}
+            required
+            className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white"
+          />
 
+          {/* GitHub & Live Links */}
           <div className="flex flex-col sm:flex-row gap-4">
             <input
               type="url"
@@ -120,7 +119,7 @@ const Admin = () => {
               placeholder="GitHub Link"
               value={formData.github}
               onChange={handleChange}
-              className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white focus:outline-none"
+              className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white"
             />
             <input
               type="url"
@@ -128,13 +127,14 @@ const Admin = () => {
               placeholder="Live Site Link"
               value={formData.live}
               onChange={handleChange}
-              className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white focus:outline-none"
+              className="w-full px-5 py-3 rounded-md bg-white/20 placeholder-gray-300 text-white"
             />
           </div>
 
+          {/* Image Upload */}
           <div>
-            <label className="block mb-2 text-sm text-gray-300" htmlFor="image">
-              Project Image (optional)
+            <label htmlFor="image" className="block mb-2 text-sm text-gray-300">
+              Project Image
             </label>
             <input
               type="file"
@@ -145,16 +145,16 @@ const Admin = () => {
             />
           </div>
 
+          {/* Image Preview */}
           {formData.image && (
-            <div className="mt-4">
-              <img
-                src={formData.image}
-                alt="Preview"
-                className="w-64 h-40 object-cover rounded-md shadow"
-              />
-            </div>
+            <img
+              src={formData.image}
+              alt="Preview"
+              className="w-64 h-40 object-cover rounded-md shadow mt-4"
+            />
           )}
 
+          {/* Submit */}
           <button
             type="submit"
             className="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white font-semibold px-6 py-3 rounded-md hover:scale-105 transition duration-300"
