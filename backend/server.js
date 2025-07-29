@@ -27,12 +27,6 @@ app.get("/", (req, res) => {
   res.send("Hello from Portfolio Backend");
 });
 
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
-
 app.listen(port, () => {
   console.log(`🚀 Server running at http://localhost:${port}`);
 });
